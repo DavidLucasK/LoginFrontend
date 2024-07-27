@@ -7,24 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const validatePassword = (password) => {
         const errors = [];
-    
+
         // Verifica o comprimento mínimo
         if (password.length < 6) {
             errors.push('A senha deve ter pelo menos 6 caracteres.');
         }
-    
+
         // Verifica se a senha contém pelo menos 2 números
         const numberCount = (password.match(/\d/g) || []).length;
         if (numberCount < 2) {
             errors.push('A senha deve conter pelo menos 2 números.');
         }
-    
+
         // Verifica se a senha contém pelo menos 1 caractere especial
         const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
         if (!specialCharRegex.test(password)) {
             errors.push('A senha deve conter pelo menos 1 caractere especial.');
         }
-    
+
         // Retorna o array de mensagens de erro
         return errors;
     };
@@ -66,12 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
             resultDiv.textContent = data.message;
             resultDiv.style.color = response.ok ? 'green' : 'red';
 
+            // Adicionando console.log para verificar a resposta
+            console.log('Resposta da API de registro:', data);
+
             if (response.ok) {
+                console.log('Usuário inserido no banco de dados com sucesso:', data.userID);
                 setTimeout(() => {
                     window.location.href = 'index.html'; // Redireciona após 2 segundos
                 }, 2000);
             }
         } catch (err) {
+            console.error('Erro ao criar conta:', err);
             resultDiv.textContent = 'Erro ao criar conta. Tente novamente mais tarde.';
             resultDiv.style.color = 'red';
         }
@@ -97,12 +102,14 @@ document.addEventListener('DOMContentLoaded', () => {
             resultDiv.style.color = response.ok ? 'green' : 'red';
 
             if (response.ok) {
+                console.log('Login bem-sucedido, token recebido:', data.token);
                 localStorage.setItem('authToken', data.token); // Armazena o token no localStorage
                 setTimeout(() => {
                     window.location.href = 'https://davidlucas.vercel.app';
                 }, 2000);
             }
         } catch (err) {
+            console.error('Erro ao fazer login:', err);
             resultDiv.textContent = 'Erro ao fazer login. Tente novamente mais tarde.';
             resultDiv.style.color = 'red';
         }
