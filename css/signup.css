@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  animation: gradient 8s ease infinite;
+  background: linear-gradient(90deg, #7e0707, #a50e0e, #d03030, #7e0707) no-repeat;
+  background-size: 200% 200%;
+  color: white;
+  overflow-y: hidden;
+}
+
+.container {
+  background-color: #fff;
+  padding: 50px;
+  background: var(--cores-cinza-dark, #1E1F28);
+  box-shadow: 0px -3px 22px 0px rgba(0, 0, 0, 0.35);
+  max-width: 500px; 
+  width: 20%;
+  height: 60%;
+  border-radius: 8px;
+  box-shadow: 0 0 30px black;
+  text-align: start;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.field {
+  margin-bottom: 15px;
+}
+
+input[type="string"], input[type="password"] {
+  width: 100%;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #888888;
+  color: white;
+  text-align: start;
+  font-size: 16px;
+  font-weight: 500;
+  box-sizing: border-box;
+  background-color: #1E1F28;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="string"]:focus, input[type="password"]:focus {
+  border-color: #b80000;
+  box-shadow: 0 0 5px #b80000;
+  outline: none;
+}
+
+input[type="string"]:hover, input[type="password"]:hover {
+  border-color: #b80000;
+  box-shadow: 0 0 5px #b80000;
+  outline: none;
+}
+
+button {
+  padding: 10px 20px;
+  margin-top: 7%;
+  border: none;
+  border-radius: 4px;
+  background-color: #b80000;
+  opacity: 1;
+  width: 100%;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  transition: 0.2s ease-in-out;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+#signupResult {
+  margin-top: 20px;
+  padding-left: 10px;
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.back-link {
+  display: block;
+  margin-top: 20px;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* Keyframe para background */
+@keyframes gradient {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
