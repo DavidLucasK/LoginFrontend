@@ -22,8 +22,8 @@ body {
   padding: 50px;
   background: var(--cores-cinza-dark, #1E1F28);
   box-shadow: 0px -3px 22px 0px rgba(0, 0, 0, 0.35);
-  max-width: 500px; 
-  width: 20%;
+  max-width: 400px; 
+  width: 60%;
   height: 60%;
   border-radius: 8px;
   box-shadow: 0 0 30px black;
@@ -111,5 +111,88 @@ button:hover {
   }
   100% {
     background-position: 0 50%;
+  }
+}
+
+/* Responsividade */
+@media only screen and (min-width: 769px) and (max-width: 1700px) {
+  .container {
+    padding: 50px;
+    width: 50%;
+    height: 80%;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  input[type="string"], input[type="password"] {
+    font-size: 14px;
+    padding: 16px;
+  }
+
+  button {
+    padding: 20px 50px;
+    font-size: 14px;
+  }
+
+  #signupResult {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 768px) {
+  .container {
+    padding: 30px;
+    width: 80%;
+    height: 60%;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  input[type="string"], input[type="password"] {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  button {
+    padding: 20px 50px;
+    font-size: 16px;
+    margin-top: 10%;
+  }
+
+  #signupResult {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 200px) and (max-width: 480px) {
+  .container {
+    padding: 20px;
+    width: 90%;
+    height: 50%;
+    margin-bottom: 50px;
+  }
+
+  h1 {
+    font-size: 20px;
+  }
+
+  input[type="string"], input[type="password"] {
+    font-size: 12px;
+    padding: 12px;
+  }
+
+  button {
+    padding: 15px 30px;
+    font-size: 16px;
+    margin-top: 10%;
+  }
+
+  #signupResult {
+    font-size: 16px;
+    padding-left: 5px;
   }
 }
