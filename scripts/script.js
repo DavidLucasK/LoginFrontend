@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Chamada para a API de registro
         try {
-            const response = await fetch('https://loginbackend-2ff9.onrender.com', {
+            const response = await fetch('https://loginbackend-2ff9.onrender.com/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultDiv = document.getElementById('result');
 
         try {
-            const response = await fetch('https://loginbackend-2ff9.onrender.com', {
+            const response = await fetch('https://loginbackend-2ff9.onrender.com/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
