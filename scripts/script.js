@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': apiKey,
+                    'apiKey': apiKey,
                     'Authorization': `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({ email, password }),
@@ -83,14 +83,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultDiv = document.getElementById('result');
 
         try {
-            const response = await fetch(`${supabaseUrl}/api/auth/login`, {
+            const response = await fetch(`${supabaseUrl}/api/auth/token`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': apiKey,
+                    'apiKey': apiKey,
                     'Authorization': `Bearer ${apiKey}`
                 },
-                body: JSON.stringify({ email: emailInput, password: passwordInput }),
+                body: JSON.stringify({
+                    grant_type: 'password', 
+                    email: emailInput, 
+                    password: passwordInput 
+                }),
             });
 
             const data = await response.json();
