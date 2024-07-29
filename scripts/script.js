@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultDiv = document.getElementById('result');
 
         try {
-            const response = await fetch(`${supabaseUrl}/api/auth/token`, {
+            const response = await fetch(`${supabaseUrl}/auth/v1/token`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
