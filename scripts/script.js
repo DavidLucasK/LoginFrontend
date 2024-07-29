@@ -1,4 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Variáveis para URLs
+    const serverUrl = 'https://localhost:7000'; // URL do servidor
+    const supabaseUrl = 'https://ojxyfmbpzjypidukzlqf.supabase.co'; // URL do Supabase
+
     const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeHlmbWJwemp5cGlkdWt6bHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIyNTc5NjIsImV4cCI6MjAzNzgzMzk2Mn0._iRG2YBG6bRkYZG27BRbD-KnrAX1aBHqloTvHGlcNKQ';
 
     const validateEmail = (email) => {
@@ -34,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const errors = validatePassword(password);
 
         if (errors.length > 0) {
-            resultDiv.textContent = errors[0];
+            resultDiv.innerHTML = errors[0];
             resultDiv.style.color = 'red';
             return;
         }
@@ -46,27 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('https://ojxyfmbpzjypidukzlqf.supabase.co/auth/v1/signup', {
+            const response = await fetch(`${supabaseUrl}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': apiKey
+                    'apikey': apiKey,
                 },
                 body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
+            resultDiv.textContent = data.message || 'Conta criada com sucesso!';
+            resultDiv.style.color = response.ok ? 'green' : 'red';
 
-            if (!response.ok) {
-                if (response.status === 429) {
-                    resultDiv.textContent = 'Muitas requisições. Tente novamente mais tarde.';
-                } else {
-                    resultDiv.textContent = data.message || 'Erro ao criar conta.';
-                }
-                resultDiv.style.color = 'red';
-            } else {
-                resultDiv.textContent = 'Conta criada com sucesso!';
-                resultDiv.style.color = 'green';
+            if (response.ok) {
+                console.log('Usuário registrado na Supabase:', data);
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 2000);
@@ -79,33 +77,27 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleLogin = async () => {
-        const emailInput = document.getElementById('loginEmail').value.trim();
-        const passwordInput = document.getElementById('loginPassword').value.trim();
+        const emailInput = document.querySelector('input[type="string"]').value.trim();
+        const passwordInput = document.querySelector('input[type="password"]').value.trim();
         const resultDiv = document.getElementById('result');
 
         try {
-            const response = await fetch('https://ojxyfmbpzjypidukzlqf.supabase.co/auth/v1/token?grant_type=password', {
+            const response = await fetch(`${supabaseUrl}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': apiKey
+                    'apikey': apiKey,
                 },
                 body: JSON.stringify({ email: emailInput, password: passwordInput }),
             });
 
             const data = await response.json();
+            resultDiv.textContent = data.message || 'Login bem-sucedido!';
+            resultDiv.style.color = response.ok ? 'green' : 'red';
 
-            if (!response.ok) {
-                if (response.status === 429) {
-                    resultDiv.textContent = 'Muitas requisições. Tente novamente mais tarde.';
-                } else {
-                    resultDiv.textContent = data.message || 'Erro ao fazer login.';
-                }
-                resultDiv.style.color = 'red';
-            } else {
-                resultDiv.textContent = 'Login bem-sucedido!';
-                resultDiv.style.color = 'green';
-                localStorage.setItem('authToken', data.access_token);
+            if (response.ok) {
+                console.log('Login bem-sucedido, token recebido:', data.token);
+                localStorage.setItem('authToken', data.token);
                 setTimeout(() => {
                     window.location.href = 'https://davidlucas.vercel.app';
                 }, 2000);
@@ -117,13 +109,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    const loginButton = document.getElementById('loginBtn');
-    if (loginButton) {
+    if (document.getElementById('convertBtn')) {
+        const loginButton = document.getElementById('convertBtn');
         loginButton.addEventListener('click', handleLogin);
     }
 
-    const signupButton = document.getElementById('signupBtn');
-    if (signupButton) {
+    if (document.getElementById('signupBtn')) {
+        const signupButton = document.getElementById('signupBtn');
         signupButton.addEventListener('click', handleSignUp);
     }
 });

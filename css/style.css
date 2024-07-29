@@ -51,7 +51,7 @@ label {
   font-size: 18px;
 }
 
-input[type="string"], input[type="password"], select {
+input[type="email"], input[type="password"], select {
   width: 100%;
   padding: 15px;
   border-radius: 4px;
@@ -65,13 +65,13 @@ input[type="string"], input[type="password"], select {
   transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-input[type="string"]:focus, input[type="password"]:focus, select:focus {
+input[type="email"]:focus, input[type="password"]:focus, select:focus {
   border-color: #b80000;
   box-shadow: 0 0 5px #b80000;
   outline: none;
 }
 
-input[type="string"]:hover, input[type="password"]:hover, select:hover {
+input[type="email"]:hover, input[type="password"]:hover, select:hover {
   border-color: #b80000;
   box-shadow: 0 0 5px #b80000;
   outline: none;
