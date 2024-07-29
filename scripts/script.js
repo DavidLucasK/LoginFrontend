@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeHlmbWJwemp5cGlkdWt6bHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIyNTc5NjIsImV4cCI6MjAzNzgzMzk2Mn0._iRG2YBG6bRkYZG27BRbD-KnrAX1aBHqloTvHGlcNKQ';
+
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
@@ -32,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const errors = validatePassword(password);
 
         if (errors.length > 0) {
-            resultDiv.innerHTML = errors[0];
+            resultDiv.textContent = errors[0];
             resultDiv.style.color = 'red';
             return;
         }
@@ -48,17 +50,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeHlmbWJwemp5cGlkdWt6bHFmIiwicm9zZSI6ImFub24iLCJpYXQiOjE3MjIyNTc5NjIsImV4cCI6MjAzNzgzMzk2Mn0._iRG2YBG6bRkYZG27BRbD-KnrAX1aBHqloTvHGlcNKQ'
+                    'apikey': apiKey
                 },
                 body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
-            resultDiv.textContent = data.message || 'Conta criada com sucesso!';
-            resultDiv.style.color = response.ok ? 'green' : 'red';
 
-            if (response.ok) {
-                console.log('Usuário registrado na Supabase:', data);
+            if (!response.ok) {
+                if (response.status === 429) {
+                    resultDiv.textContent = 'Muitas requisições. Tente novamente mais tarde.';
+                } else {
+                    resultDiv.textContent = data.message || 'Erro ao criar conta.';
+                }
+                resultDiv.style.color = 'red';
+            } else {
+                resultDiv.textContent = 'Conta criada com sucesso!';
+                resultDiv.style.color = 'green';
                 setTimeout(() => {
                     window.location.href = 'index.html';
                 }, 2000);
@@ -71,8 +79,8 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const handleLogin = async () => {
-        const emailInput = document.querySelector('input[type="email"]').value.trim();
-        const passwordInput = document.querySelector('input[type="password"]').value.trim();
+        const emailInput = document.getElementById('loginEmail').value.trim();
+        const passwordInput = document.getElementById('loginPassword').value.trim();
         const resultDiv = document.getElementById('result');
 
         try {
@@ -80,17 +88,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeHlmbWJwemp5cGlkdWt6bHFmIiwicm9zZSI6ImFub24iLCJpYXQiOjE3MjIyNTc5NjIsImV4cCI6MjAzNzgzMzk2Mn0._iRG2YBG6bRkYZG27BRbD-KnrAX1aBHqloTvHGlcNKQ'
+                    'apikey': apiKey
                 },
                 body: JSON.stringify({ email: emailInput, password: passwordInput }),
             });
 
             const data = await response.json();
-            resultDiv.textContent = data.message || 'Login bem-sucedido!';
-            resultDiv.style.color = response.ok ? 'green' : 'red';
 
-            if (response.ok) {
-                console.log('Login bem-sucedido, token recebido:', data.access_token);
+            if (!response.ok) {
+                if (response.status === 429) {
+                    resultDiv.textContent = 'Muitas requisições. Tente novamente mais tarde.';
+                } else {
+                    resultDiv.textContent = data.message || 'Erro ao fazer login.';
+                }
+                resultDiv.style.color = 'red';
+            } else {
+                resultDiv.textContent = 'Login bem-sucedido!';
+                resultDiv.style.color = 'green';
                 localStorage.setItem('authToken', data.access_token);
                 setTimeout(() => {
                     window.location.href = 'https://davidlucas.vercel.app';
@@ -103,13 +117,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    if (document.getElementById('convertBtn')) {
-        const loginButton = document.getElementById('convertBtn');
+    const loginButton = document.getElementById('loginBtn');
+    if (loginButton) {
         loginButton.addEventListener('click', handleLogin);
     }
 
-    if (document.getElementById('signupBtn')) {
-        const signupButton = document.getElementById('signupBtn');
+    const signupButton = document.getElementById('signupBtn');
+    if (signupButton) {
         signupButton.addEventListener('click', handleSignUp);
     }
 });
