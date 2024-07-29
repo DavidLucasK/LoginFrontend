@@ -1,15 +1,14 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Variáveis para URLs
-    const serverUrl = 'https://localhost:7000'; // URL do servidor
-    const supabaseUrl = 'https://ojxyfmbpzjypidukzlqf.supabase.co'; // URL do Supabase
+    const backendUrl = 'https://your-backend-url.vercel.app'; // Substitua pela URL do seu backend na Vercel
 
-    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeHlmbWJwemp5cGlkdWt6bHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIyNTc5NjIsImV4cCI6MjAzNzgzMzk2Mn0._iRG2YBG6bRkYZG27BRbD-KnrAX1aBHqloTvHGlcNKQ';
-
+    // Função para validar e-mail
     const validateEmail = (email) => {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     };
 
+    // Função para validar senha
     const validatePassword = (password) => {
         const errors = [];
 
@@ -30,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         return errors;
     };
 
+    // Função para manipular o registro de usuário
     const handleSignUp = async () => {
         const email = document.getElementById('signupEmail').value.trim();
         const password = document.getElementById('signupPassword').value.trim();
@@ -50,12 +50,10 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch(`${supabaseUrl}/api/auth/signup`, {
+            const response = await fetch(`${backendUrl}/api/auth/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apiKey': apiKey,
-                    'Authorization': `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({ email, password }),
             });
@@ -65,9 +63,9 @@ document.addEventListener('DOMContentLoaded', () => {
             resultDiv.style.color = response.ok ? 'green' : 'red';
 
             if (response.ok) {
-                console.log('Usuário registrado na Supabase:', data);
+                console.log('Usuário registrado:', data);
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = 'index.html'; // Redirecionar após o registro
                 }, 2000);
             }
         } catch (err) {
@@ -77,24 +75,19 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    // Função para manipular o login de usuário
     const handleLogin = async () => {
-        const emailInput = document.querySelector('input[type="string"]').value.trim();
+        const emailInput = document.querySelector('input[type="email"]').value.trim();
         const passwordInput = document.querySelector('input[type="password"]').value.trim();
         const resultDiv = document.getElementById('result');
 
         try {
-            const response = await fetch(`${supabaseUrl}/auth/v1/token`, {
+            const response = await fetch(`${backendUrl}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apiKey': apiKey,
-                    'Authorization': `Bearer ${apiKey}`
                 },
-                body: JSON.stringify({
-                    grant_type: 'password', 
-                    email: emailInput, 
-                    password: passwordInput 
-                }),
+                body: JSON.stringify({ email: emailInput, password: passwordInput }),
             });
 
             const data = await response.json();
@@ -105,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 console.log('Login bem-sucedido, token recebido:', data.token);
                 localStorage.setItem('authToken', data.token);
                 setTimeout(() => {
-                    window.location.href = 'https://davidlucas.vercel.app';
+                    window.location.href = 'https://davidlucas.vercel.app'; // Redirecionar após o login
                 }, 2000);
             }
         } catch (err) {
@@ -115,13 +108,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    if (document.getElementById('convertBtn')) {
-        const loginButton = document.getElementById('convertBtn');
-        loginButton.addEventListener('click', handleLogin);
-    }
-
+    // Adicionar event listeners aos botões
     if (document.getElementById('signupBtn')) {
         const signupButton = document.getElementById('signupBtn');
         signupButton.addEventListener('click', handleSignUp);
+    }
+
+    if (document.getElementById('convertBtn')) {
+        const loginButton = document.getElementById('convertBtn');
+        loginButton.addEventListener('click', handleLogin);
     }
 });
