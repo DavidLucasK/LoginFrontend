@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         try {
-            const response = await fetch('https://https://ojxyfmbpzjypidukzlqf.supabase.co/auth/v1/signup', {
+            const response = await fetch('https://ojxyfmbpzjypidukzlqf.supabase.co/auth/v1/signup', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const resultDiv = document.getElementById('result');
 
         try {
-            const response = await fetch('https://https://ojxyfmbpzjypidukzlqf.supabase.co/auth/v1/token?grant_type=password', {
+            const response = await fetch('https://ojxyfmbpzjypidukzlqf.supabase.co/auth/v1/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
