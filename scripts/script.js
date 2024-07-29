@@ -117,8 +117,8 @@ document.addEventListener('DOMContentLoaded', () => {
         signupButton.addEventListener('click', handleSignUp);
     }
 
-    if (document.getElementById('convertBtn')) {
-        const loginButton = document.getElementById('convertBtn');
+    if (document.getElementById('loginBtn')) {
+        const loginButton = document.getElementById('loginBtn');
         loginButton.addEventListener('click', handleLogin);
     }
 });
