@@ -79,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Função para manipular o login de usuário
     const handleLogin = async () => {
-        const emailInput = document.querySelector('input[type="email"]').value.trim();
+        const emailInput = document.querySelector('input[type="string"]').value.trim();
         const passwordInput = document.querySelector('input[type="password"]').value.trim();
         const resultDiv = document.getElementById('result');
         console.log('Email:', emailInput);
