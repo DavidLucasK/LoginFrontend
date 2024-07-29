@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Variáveis para URLs
-    const backendUrl = 'https://loginback.vercel.app'; // Substitua pela URL do seu backend na Vercel
+    // Variáveis para URLs e API Key
+    const backendUrl = 'https://backendlogindl.vercel.app';
+    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeHlmbWJwemp5cGlkdWt6bHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIyNTc5NjIsImV4cCI6MjAzNzgzMzk2Mn0._iRG2YBG6bRkYZG27BRbD-KnrAX1aBHqloTvHGlcNKQ'
 
     // Função para validar e-mail
     const validateEmail = (email) => {
@@ -54,6 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'apiKey': apiKey,
                 },
                 body: JSON.stringify({ email, password }),
             });
@@ -86,6 +88,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'apiKey': apiKey,
                 },
                 body: JSON.stringify({ email: emailInput, password: passwordInput }),
             });
