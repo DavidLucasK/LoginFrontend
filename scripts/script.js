@@ -82,6 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailInput = document.querySelector('input[type="email"]').value.trim();
         const passwordInput = document.querySelector('input[type="password"]').value.trim();
         const resultDiv = document.getElementById('result');
+        console.log('Email:', emailInput);
+        console.log('Senha:', passwordInput);
 
         try {
             const response = await fetch(`${backendUrl}/api/auth/login`, {
