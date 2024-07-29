@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Variáveis para URLs
-    const backendUrl = 'https://your-backend-url.vercel.app'; // Substitua pela URL do seu backend na Vercel
+    const backendUrl = 'https://loginback.vercel.app'; // Substitua pela URL do seu backend na Vercel
 
     // Função para validar e-mail
     const validateEmail = (email) => {
