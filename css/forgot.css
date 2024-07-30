@@ -102,6 +102,14 @@ button:hover {
   opacity: 0.8;
 }
 
+.back-link {
+    display: block;
+    margin-top: 20px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+  }
+
 #result {
   margin-top: 20px;
   padding-left: 10px;

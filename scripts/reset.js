@@ -32,7 +32,7 @@ async function handleResetPassword(event) {
     }
 
     try {
-        const response = await fetch(`https://backendlogindl.vercel.app/api/auth/reset-password`, {
+        const response = await fetch(`https://backendlogindl.vercel.app/api/auth/reset`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
