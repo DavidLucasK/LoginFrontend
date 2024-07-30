@@ -36,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = document.getElementById('signupPassword').value.trim();
         const resultDiv = document.getElementById('signupResult');
 
+        resultDiv.style.fontSize = '14px';
+
         const errors = validatePassword(password);
 
         if (errors.length > 0) {
@@ -82,6 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailInput = document.querySelector('input[type="string"]').value.trim();
         const passwordInput = document.querySelector('input[type="password"]').value.trim();
         const resultDiv = document.getElementById('result');
+
+        resultDiv.style.fontSize = '14px';
 
         try {
             const response = await fetch(`${backendUrl}/api/auth/login`, {
