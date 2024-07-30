@@ -59,6 +59,9 @@ async function handleResetPassword(event) {
 
         if (response.ok) {
             document.getElementById('result').textContent = 'Senha redefinida com sucesso!';
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
         } else {
             document.getElementById('result').textContent = data.message || 'Erro ao redefinir a senha.';
         }
