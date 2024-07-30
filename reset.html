@@ -10,17 +10,22 @@
 <body>
     <div class="container">
         <h1>Redefinir Senha</h1>
-        <div class="reset-password">
-            <div class="field">
-                <input type="password" placeholder="Nova Senha" required id="newPassword">
+        <form id="reset-form" action="/reset" method="POST">
+            <input type="hidden" name="email" id="emailInput">
+            <input type="hidden" name="token" id="tokenInput">
+    
+            <div class="reset-password">
+                <div class="field">
+                    <input type="password" placeholder="Nova Senha" required id="newPassword">
+                </div>
+                <div class="field">
+                    <input type="password" placeholder="Confirme a Nova Senha" required id="confirmPassword">
+                </div>
+                <div class="mostrarSenha" id="togglePasswords">Mostrar Senha</div>
+                <button type="submit" class="reset" id="resetPasswordBtn">Redefinir Senha</button>
             </div>
-            <div class="field">
-                <input type="password" placeholder="Confirme a Nova Senha" required id="confirmPassword">
-            </div>
-            <div class="mostrarSenha" id="togglePasswords">Mostrar Senha</div>
-            <button class="reset" id="resetPasswordBtn">Redefinir Senha</button>
-        </div>
-        <div id="result"></div>
+            <div id="result"></div>
+        </form>
     </div>
     <script src="./scripts/reset.js"></script>
 </body>

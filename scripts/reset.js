@@ -10,8 +10,8 @@ function togglePasswordsVisibility() {
 
     passwordsVisible = !passwordsVisible;
 
-    newPasswordInput.type = passwordsVisible ? 'string' : 'password';
-    confirmPasswordInput.type = passwordsVisible ? 'string' : 'password';
+    newPasswordInput.type = passwordsVisible ? 'text' : 'password';
+    confirmPasswordInput.type = passwordsVisible ? 'text' : 'password';
     button.textContent = passwordsVisible ? 'Ocultar Senhas' : 'Mostrar Senhas';
 }
 
@@ -20,8 +20,9 @@ async function handleResetPassword(event) {
 
     const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeHlmbWJwemp5cGlkdWt6bHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIyNTc5NjIsImV4cCI6MjAzNzgzMzk2Mn0._iRG2YBG6bRkYZG27BRbD-KnrAX1aBHqloTvHGlcNKQ';
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('token');
+    // Pegando os valores dos campos ocultos
+    const email = document.querySelector('input[name="email"]').value;
+    const token = document.querySelector('input[name="token"]').value;
 
     const newPassword = document.getElementById('newPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
@@ -38,7 +39,7 @@ async function handleResetPassword(event) {
                 'Content-Type': 'application/json',
                 'apiKey': apiKey,
             },
-            body: JSON.stringify({ token, newPassword })
+            body: JSON.stringify({ email, token, newPassword })
         });
 
         const data = await response.json();
