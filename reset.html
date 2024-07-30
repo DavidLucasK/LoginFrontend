@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redefinir Senha</title>
+    <link rel="stylesheet" href="./css/reset.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Redefinir Senha</h1>
+        <div class="reset-password">
+            <div class="field">
+                <input type="password" placeholder="Nova Senha" required id="newPassword">
+            </div>
+            <div class="field">
+                <input type="password" placeholder="Confirme a Nova Senha" required id="confirmPassword">
+            </div>
+            <div class="mostrarSenha" id="togglePasswords">Mostrar Senha</div>
+            <button class="reset" id="resetPasswordBtn">Redefinir Senha</button>
+        </div>
+        <div id="result"></div>
+    </div>
+    <script src="./scripts/reset.js"></script>
+</body>
+</html>
