@@ -1,5 +1,20 @@
-document.getElementById('resetPasswordBtn').addEventListener('click', handleResetPassword);
-document.getElementById('togglePasswords').addEventListener('click', togglePasswordsVisibility);
+document.addEventListener('DOMContentLoaded', () => {
+    // Obter os parâmetros da URL e preencher os inputs ocultos
+    const urlParams = new URLSearchParams(window.location.search);
+    const email = urlParams.get('email');
+    const token = urlParams.get('token');
+
+    if (email && token) {
+        document.getElementById('emailInput').value = email;
+        document.getElementById('tokenInput').value = token;
+    } else {
+        console.error('Email ou token não encontrados na URL');
+    }
+
+    // Adicionar event listener ao botão de redefinição de senha
+    document.getElementById('resetPasswordBtn').addEventListener('click', handleResetPassword);
+    document.getElementById('togglePasswords').addEventListener('click', togglePasswordsVisibility);
+});
 
 let passwordsVisible = false;
 
@@ -18,12 +33,8 @@ function togglePasswordsVisibility() {
 async function handleResetPassword(event) {
     event.preventDefault();
 
-    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeHlmbWJwemp5cGlkdWt6bHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIyNTc5NjIsImV4cCI6MjAzNzgzMzk2Mn0._iRG2YBG6bRkYZG27BRbD-KnrAX1aBHqloTvHGlcNKQ';
-
-    // Pegando os valores dos campos ocultos
-    const email = document.querySelector('input[name="email"]').value;
-    const token = document.querySelector('input[name="token"]').value;
-
+    const email = document.getElementById('emailInput').value; // Pega o e-mail do input oculto
+    const token = document.getElementById('tokenInput').value; // Pega o token do input oculto
     const newPassword = document.getElementById('newPassword').value;
     const confirmPassword = document.getElementById('confirmPassword').value;
 
@@ -33,13 +44,13 @@ async function handleResetPassword(event) {
     }
 
     try {
-        const response = await fetch(`https://backendlogindl.vercel.app/api/auth/reset`, {
+        const response = await fetch('https://backendlogindl.vercel.app/api/auth/reset', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'apiKey': apiKey,
             },
-            body: JSON.stringify({ email, token, newPassword })
+            body: JSON.stringify({ email, token, newPassword }) // Envia o e-mail, token e nova senha
         });
 
         const data = await response.json();
