@@ -98,7 +98,6 @@ document.addEventListener('DOMContentLoaded', () => {
             resultDiv.style.color = response.ok ? 'green' : 'red';
 
             if (response.ok) {
-                console.log('Login bem-sucedido, token recebido:', data.token);
                 localStorage.setItem('authToken', data.token);
                 setTimeout(() => {
                     window.location.href = 'https://davidlucas.vercel.app'; // Redirecionar após o login
