@@ -240,9 +240,8 @@ input::-webkit-inner-spin-button {
 @media only screen and (min-width: 200px) and (max-width: 480px) {
   .container {
     padding: 20px;
-    width: 90%;
+    width: 80%;
     height: auto;
-    margin-bottom: 50px;
   }
 
   img {
