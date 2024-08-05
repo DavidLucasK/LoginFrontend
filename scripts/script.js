@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const loginBtn = document.getElementById('loginBtn');
 
         loginBtn.disabled = true;
-
         resultDiv.style.fontSize = '14px';
 
         try {
@@ -114,11 +113,8 @@ document.addEventListener('DOMContentLoaded', () => {
             console.error('Erro ao fazer login:', err);
             resultDiv.textContent = 'Erro ao fazer login. Tente novamente mais tarde.';
             resultDiv.style.color = 'red';
-        }
-
-        setTimeout(() => {
             loginBtn.disabled = false;
-        }, 2000);
+        }
     };
 
     // Adicionar event listeners aos botões
