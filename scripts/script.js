@@ -84,6 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const emailInput = document.querySelector('input[type="string"]').value.trim();
         const passwordInput = document.querySelector('input[type="password"]').value.trim();
         const resultDiv = document.getElementById('result');
+        const loginBtn = document.getElementById('loginBtn');
+
+        loginBtn.disabled = true;
 
         resultDiv.style.fontSize = '14px';
 
@@ -112,6 +115,10 @@ document.addEventListener('DOMContentLoaded', () => {
             resultDiv.textContent = 'Erro ao fazer login. Tente novamente mais tarde.';
             resultDiv.style.color = 'red';
         }
+
+        setTimeout(() => {
+            loginBtn.disabled = false;
+        }, 2000);
     };
 
     // Adicionar event listeners aos botões
