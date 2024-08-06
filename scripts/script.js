@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
         return re.test(email);
     };
 
+    document.getElementById('mostrarSenha').addEventListener('click', togglePasswordsVisibility);
+
     // Função para validar senha
     const validatePassword = (password) => {
         const errors = [];
@@ -35,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = document.getElementById('signupEmail').value.trim();
         const password = document.getElementById('signupPassword').value.trim();
         const resultDiv = document.getElementById('signupResult');
+        const createAccount = document.getElementById('signupBtn');
 
+        createAccount.disabled = true;
         resultDiv.style.fontSize = '14px';
 
         const errors = validatePassword(password);
@@ -128,3 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
         loginButton.addEventListener('click', handleLogin);
     }
 });
+
+let passwordsVisible = false;
+
+function togglePasswordsVisibility() {
+    const password = document.getElementById('loginPassword');
+    const mostrarSenha = document.getElementById('mostrarSenha');
+
+    passwordsVisible = !passwordsVisible;
+
+    password.type = passwordsVisible ? 'text' : 'password';
+    mostrarSenha.textContent = passwordsVisible ? 'Ocultar Senhas' : 'Mostrar Senhas';
+}

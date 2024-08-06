@@ -51,7 +51,7 @@ label {
   font-size: 18px;
 }
 
-input[type="string"], input[type="password"], select {
+input[type="text"], input[type="string"], input[type="password"], select {
   width: 100%;
   padding: 15px;
   border-radius: 4px;
@@ -151,6 +151,15 @@ button:hover {
   padding-left: 10px;
   font-weight: 500;
   font-size: 25px;
+}
+
+.mostrarSenha {
+  cursor: pointer;
+  width: fit-content;
+}
+
+.mostrarSenha:hover {
+  color: #d6d6d6;
 }
 
 input::-webkit-outer-spin-button,
