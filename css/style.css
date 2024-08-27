@@ -11,9 +11,9 @@ body {
   height: 100vh;
   margin: 0;
   animation: gradient 12s ease infinite;
-  background: linear-gradient(90deg, #7e0707, #a50e0e, #d12222, #7e0707) no-repeat;
+  background: linear-gradient(90deg, #660708, #950101, #FF0000, #950101, #660708) no-repeat;
   background-size: 200% 200%;
-  color: white;
+  color: #F5F3F4;
   overflow-y: hidden;
 }
 
@@ -24,15 +24,15 @@ img {
 }
 
 .container {
-  background-color: #fff;
+  background-color: #F5F3F4;
   padding: 50px;
-  background: var(--cores-cinza-dark, #1E1F28);
+  background: var(--cores-cinza-dark, #161A1D);
   box-shadow: 0px -3px 22px 0px rgba(0, 0, 0, 0.35);
   max-width: 500px; 
   width: 20%;
   height: 60%;
   border-radius: 8px;
-  box-shadow: 0 0 30px black;
+  box-shadow: 0 0 30px #0B090A;
   text-align: start;
 }
 
@@ -55,8 +55,8 @@ input[type="text"], input[type="string"], input[type="password"], select {
   width: 100%;
   padding: 15px;
   border-radius: 4px;
-  border: 1px solid #888888;
-  color: white;
+  border: 1px solid #D3D3D3;
+  color: #F5F3F4;
   text-align: start;
   font-size: 16px;
   font-weight: 500;
@@ -66,14 +66,14 @@ input[type="text"], input[type="string"], input[type="password"], select {
 }
 
 input[type="string"]:focus, input[type="password"]:focus, select:focus {
-  border-color: #b80000;
-  box-shadow: 0 0 5px #b80000;
+  border-color: #FF0000;
+  box-shadow: 0 0 5px #FF0000;
   outline: none;
 }
 
 input[type="string"]:hover, input[type="password"]:hover, select:hover {
-  border-color: #b80000;
-  box-shadow: 0 0 5px #b80000;
+  border-color: #FF0000;
+  box-shadow: 0 0 5px #FF0000;
   outline: none;
 }
 
@@ -91,7 +91,7 @@ select {
 }
 
 .converter .text-forget {
-  color: white;
+  color: #F5F3F4;
 }
 
 .converter .text-forget:hover {
@@ -99,7 +99,7 @@ select {
 }
 
 .converter a {
-  color: white;
+  color: #F5F3F4;
   text-decoration: none;
 }
 
@@ -125,7 +125,7 @@ select {
 }
 
 .crie .text-crie {
-  color: white;
+  color: #F5F3F4;
 }
 
 button {
@@ -133,17 +133,17 @@ button {
   margin-top: 7%;
   border: none;
   border-radius: 4px;
-  background-color: #b80000;
+  background-color: #c50000;
   opacity: 1;
   width: 100%;
-  color: #fff;
+  color: #F5F3F4;
   cursor: pointer;
   font-size: 16px;
   transition: 0.2s ease-in-out;
 }
 
 button:hover {
-  opacity: 0.8;
+  background-color: #950101;
 }
 
 #result {

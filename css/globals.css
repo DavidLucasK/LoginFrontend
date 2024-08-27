@@ -88,7 +88,7 @@ p:not(:last-of-type),
 
 .btn.btn-primary {
   background-color: var(--dark-secondary-color);
-  color: var(--white);
+  color: var(--#F5F3F4);
   font-weight: 400;
   font-size: 1.4rem;
 }
