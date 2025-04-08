@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Variáveis para URLs e API Key
     const backendUrl = 'https://backendlogindl.vercel.app';
-    const apiKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9qeHlmbWJwemp5cGlkdWt6bHFmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjIyNTc5NjIsImV4cCI6MjAzNzgzMzk2Mn0._iRG2YBG6bRkYZG27BRbD-KnrAX1aBHqloTvHGlcNKQ'
 
     // Função para validar e-mail
     const validateEmail = (email) => {
@@ -98,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'apiKey': apiKey,
                 },
                 body: JSON.stringify({ email: emailInput, password: passwordInput }),
             });
@@ -110,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (response.ok) {
                 localStorage.setItem('authToken', data.token);
                 setTimeout(() => {
-                    window.location.href = 'https://davidlucas.vercel.app'; // Redirecionar após o login
+                    window.location.href = 'https://davidlucas.com.br'; // Redirecionar após o login
                 }, 2000);
             }
         } catch (err) {
